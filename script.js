@@ -8,9 +8,13 @@ const getSum = () => {
 	let total = 0;
 
 	
-    prices.forEach((priceCell) => {
-	total += parseInt(priceCell.textContent);
+    	prices.forEach((priceCell) => {
+		total += parseInt(priceCell.textContent) || 0;
 	});
+
+	const oldAns = document.getElementById("ans");
+	if (oldAns) oldAns.remove();
+
 
 
 	const table = document.querySelector("table");
@@ -19,7 +23,8 @@ const getSum = () => {
 
 	totalCell.setAttribute("colspan", "2");
 	totalCell.style.textAlign = "center";
-	totalCell.textContent = "Total Price = Rs " + total;
+	totalCell.id = "ans";
+	totalCell.textContent = total;
 
 	totalRow.appendChild(totalCell);
 	table.appendChild(totalRow);
